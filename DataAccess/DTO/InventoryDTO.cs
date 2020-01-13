@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PurchaseSQLDB.DataAccess.EFClasses;
+using MosiacData.DBContexts.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace Weaselware.Lemur.DTO
+namespace MosiacData.Models
 {
     public class InventoryDto
     {
         [Key]
         public int StockTransactionID { get; set; }
+        [Required]
         public int OrderReceiptID { get; set; }
         public int PurchaseOrderID { get; set; }
         public int LineID { get; set; }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PurchaseSQLDB.DataAccess.EFClasses;
+using MosiacData.DBContexts.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace Weaselware.Lemur.DTO
+namespace MosiacData.Models
 {
     public class PartDto
     {

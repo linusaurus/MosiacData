@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PurchaseSQLDB.DataAccess.EFClasses;
-using PurchaseSQLDB.DataAccess.EFCode;
+using MosiacData.DBContexts.Entities;
+using MosiacData.DBContexts;
 
 namespace Weaselware.Lemur.Services
 {
