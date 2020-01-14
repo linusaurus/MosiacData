@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MosiacData.DBContexts.Entities;
+using MosiacData.Entities;
 using MosiacData.DBContexts;
 
-namespace Weaselware.Lemur.Services
+namespace MosiacData.Services
 {
     public class JobService
     {

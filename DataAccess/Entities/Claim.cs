@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-using MosiacData.DBContexts.Entities;
+using MosiacData.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace MosiacData.DBContexts.Entities
+namespace MosiacData.Entities
 {
     public class Claim
     {

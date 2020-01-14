@@ -1,4 +1,4 @@
-﻿using MosiacData.DBContexts.Entities;
+﻿using MosiacData.Entities;
 using MosiacData.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;

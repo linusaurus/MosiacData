@@ -2,7 +2,7 @@ using System;
 using MosiacData.DBContexts;
 
 
-namespace MosiacData.DBContexts.Entities
+namespace MosiacData.Entities
 {
     public class Article
     {

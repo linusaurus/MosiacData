@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-using MosiacData.DBContexts.Entities;
+using MosiacData.Entities;
 
 
-namespace MosiacData.DBContexts.Entities
+namespace MosiacData.Entities
 {
     public class ClaimItem
     {

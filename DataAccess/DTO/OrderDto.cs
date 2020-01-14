@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MosiacData.DBContexts.Entities;
+using MosiacData.Entities;
 
 namespace MosiacData.Models
 {

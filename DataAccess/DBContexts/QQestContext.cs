@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using PurchaseSQLDB.DataAccess;
-using MosiacData.DBContexts.Entities;
+using MosiacData.Entities;
 using PurchaseSQLDB.DataAccess.Configurations;
 
 

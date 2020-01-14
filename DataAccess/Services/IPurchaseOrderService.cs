@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using MosiacData.DBContexts.Entities;
+using MosiacData.Entities;
 
 namespace PurchaseSQLDB.DataAccess.Services
 {

@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-using MosiacData.DBContexts.Entities;
+using MosiacData.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace MosiacData.DBContexts.Entities
+namespace MosiacData.Entities
 {
     public class Part
     {
