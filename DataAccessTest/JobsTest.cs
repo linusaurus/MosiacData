@@ -10,13 +10,12 @@ using System.Threading.Tasks;
 namespace DataAccessTest
 {
     [TestClass]
-    public class JobsTest
+    public class SupplierRepoTest
     {
         [TestMethod]
         public async  Task ShouldReturnAllSuppliers()
         {
             
-
             ISupplierRepository _supplierRepo =
                 new SupplierRepository(new MosiacData.DBContexts.PurchaseSQLDBContext());
             var suppliersReturned = await _supplierRepo.GetSuppliers();
@@ -49,18 +48,50 @@ namespace DataAccessTest
         }
 
         [TestMethod]
-        public async Task ShouldUpdateSupplierById()
+        public async Task ShouldRemoveSupplier()
         {
             ISupplierRepository _supplierRepo =
               new SupplierRepository(new MosiacData.DBContexts.PurchaseSQLDBContext());
             //Rerieve the Entity to Update-
-            Supplier supplierToUpdate = await _supplierRepo.GetSupplier(3421);
+            Supplier supplierToRemove = await _supplierRepo.GetSupplier(3421);
+            
+            await _supplierRepo.RemoveSupplier(supplierToRemove);
 
-            supplierToUpdate.Phone = "619-245-1123";
+            var test = await _supplierRepo.GetSupplier(supplierToRemove.SupplierID);
+            //check that the returned and updated entity is correct
+            Assert.IsTrue(test == null);
+        }
 
-            var supplierReturned = await _supplierRepo.UpdateSupplier(supplierToUpdate);
+        [TestMethod]
+        public async Task ShouldReturnSupplierOrders()
+        {
+            ISupplierRepository _supplierRepo =
+              new SupplierRepository(new MosiacData.DBContexts.PurchaseSQLDBContext());
+  
+            Supplier supplierWithOrders = await _supplierRepo.GetSupplier(893);
+            var test = await _supplierRepo.GetSupplierOrders(supplierWithOrders);
+           
+            Assert.IsTrue(test.Count() > 0);
+        }
 
-            Assert.IsTrue(supplierReturned.Phone == "619-245-1123");
+        
+
+
+    }
+
+    [TestClass]
+    public class PurchaseOrderRepoTest
+    {
+        [TestMethod]
+        public async Task ShouldReturnAllOrders()
+        {
+
+            //ISupplierRepository _supplierRepo =
+            //    new SupplierRepository(new MosiacData.DBContexts.PurchaseSQLDBContext());
+            //var suppliersReturned = await _supplierRepo.GetSuppliers();
+
+
+            //Assert.IsTrue(suppliersReturned.Count() > 1);
         }
     }
 }
