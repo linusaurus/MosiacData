@@ -1,20 +1,15 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
-
-
 
 namespace MosiacData.Entities
 {
-    public class CostHistory
+    public partial class CostHistory
     {
-        public int CostChangeID { get; set; }
+        public int CostChangeId { get; set; }
         public string User { get; set; }
-        public int? PartID { get; set; }
+        public int? PartId { get; set; }
         public decimal? UpdatedUnitCost { get; set; }
-        public decimal? UpdatedUoPCost { get; set; }
+        public decimal? UpdatedUoPcost { get; set; }
         public string UoP { get; set; }
         public DateTime? DateStamp { get; set; }
     }

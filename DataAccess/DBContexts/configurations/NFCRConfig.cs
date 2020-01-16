@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace PurchaseSQLDB.DataAccess.Configurations
 {
-    public class NFCRConfig : IEntityTypeConfiguration<NFRC>
+    public class NFCRConfig : IEntityTypeConfiguration<Nfrc>
     {
-        public void Configure(EntityTypeBuilder<NFRC> entity)
+        public void Configure(EntityTypeBuilder<Nfrc> entity)
         {
-            entity.HasKey(p => p.CPD_ID);
+            entity.HasKey(p => p.CpdId);
         }
     }
 }

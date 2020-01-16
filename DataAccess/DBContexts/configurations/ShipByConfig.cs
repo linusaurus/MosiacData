@@ -12,7 +12,7 @@ namespace PurchaseSQLDB.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<ShipBy> entity)
         {
-            entity.HasKey(p => p.ShipID);
+            entity.HasKey(p => p.ShipId);
         }
     }
 }

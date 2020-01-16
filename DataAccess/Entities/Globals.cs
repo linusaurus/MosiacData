@@ -1,13 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
-
 
 namespace MosiacData.Entities
 {
-    public class Globals
+    public partial class Globals
     {
         public int GiD { get; set; }
         public string ElementName { get; set; }

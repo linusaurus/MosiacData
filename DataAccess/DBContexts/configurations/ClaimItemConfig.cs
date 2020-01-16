@@ -12,9 +12,9 @@ namespace PurchaseSQLDB.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<ClaimItem> entity)
         {
-            entity.HasKey(p => p.ClaimItemID);
-            entity.HasMany(r => r.ClaimDocuments)
-                .WithOne().HasForeignKey(l => l.ClaimItemID)
+            entity.HasKey(p => p.ClaimItemId);
+            entity.HasMany(r => r.ClaimDocument)
+                .WithOne().HasForeignKey(l => l.ClaimItemId)
                 .IsRequired().OnDelete(DeleteBehavior.Cascade);
         }
     }

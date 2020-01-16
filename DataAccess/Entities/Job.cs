@@ -1,33 +1,29 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
-
 
 namespace MosiacData.Entities
 {
-    public class Job
+    public partial class Job
     {
         public Job()
         {
-            this.PurchaseOrders = new HashSet<PurchaseOrder>();
+            PurchaseOrder = new HashSet<PurchaseOrder>();
         }
 
-        public int job_id { get; set; }
-        public int? company_id { get; set; }
-        public int? project_id { get; set; }
-        public int? structurelevel { get; set; }
-        public string jobname { get; set; }
-        public int? jobnumber { get; set; }
-        public string jobdesc { get; set; }
-        public int? leftNode { get; set; }
-        public int? rightnode { get; set; }
-        public int? parent_id { get; set; }
+        public int JobId { get; set; }
+        public int? CompanyId { get; set; }
+        public int? ProjectId { get; set; }
+        public int? Structurelevel { get; set; }
+        public string Jobname { get; set; }
+        public int? Jobnumber { get; set; }
+        public string Jobdesc { get; set; }
+        public int? LeftNode { get; set; }
+        public int? Rightnode { get; set; }
+        public int? ParentId { get; set; }
         public bool? Retired { get; set; }
         public int? Manager { get; set; }
         public bool? Visible { get; set; }
 
-        public ICollection<PurchaseOrder> PurchaseOrders { get; set; }
+        public virtual ICollection<PurchaseOrder> PurchaseOrder { get; set; }
     }
 }

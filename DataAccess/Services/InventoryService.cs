@@ -14,9 +14,9 @@ namespace MosiacData.Services
    
     public class InventoryService
     {
-        private readonly PurchaseSQLDBContext _db;
+        private readonly BadgerContext _db;
 
-        public InventoryService(PurchaseSQLDBContext db)
+        public InventoryService(BadgerContext db)
         {
             _db = db;
         }
@@ -25,13 +25,13 @@ namespace MosiacData.Services
         {
             return await _db.Inventory.Select(p => new InventoryDto
             {
-                StockTransactionID = p.StockTransactionID,
+                StockTransactionID = p.StockTransactionId,
                 Description = p.Description,
                 DateStamp = p.DateStamp.HasValue ? p.DateStamp.Value.ToShortDateString() : string.Empty,
-                LineID = p.LineID.HasValue ? p.LineID.Value: 0,
+                LineID = p.LineId.HasValue ? p.LineId.Value: 0,
                 Location = p.Location,
-                OrderReceiptID = p.OrderReceiptID.HasValue ? p.OrderReceiptID.Value : 0,
-                PartID = p.PartID.Value > 0 ? p.PartID.Value : 0,
+                OrderReceiptID = p.OrderReceiptId.HasValue ? p.OrderReceiptId.Value : 0,
+                PartID = p.PartId.Value > 0 ? p.PartId.Value : 0,
                 Qnty = p.Qnty.HasValue ? p.Qnty.Value : 0,
                 
 
@@ -44,15 +44,15 @@ namespace MosiacData.Services
         public async Task<List<InventoryDto>> GetTransActions(int partID)
         {
 
-            return await _db.Inventory.Where(d => d.PartID==partID).Select(p => new InventoryDto
+            return await _db.Inventory.Where(d => d.PartId==partID).Select(p => new InventoryDto
             {
-                StockTransactionID = p.StockTransactionID,
+                StockTransactionID = p.StockTransactionId,
                 Description = p.Description,
                 DateStamp = p.DateStamp.HasValue ? p.DateStamp.Value.ToShortDateString() : string.Empty,
-                LineID = p.LineID.HasValue ? p.LineID.Value : 0,
+                LineID = p.LineId.HasValue ? p.LineId.Value : 0,
                 Location = p.Location,
-                OrderReceiptID = p.OrderReceiptID.HasValue ? p.OrderReceiptID.Value : 0,
-                PartID = p.PartID.Value > 0 ? p.PartID.Value : 0,
+                OrderReceiptID = p.OrderReceiptId.HasValue ? p.OrderReceiptId.Value : 0,
+                PartID = p.PartId.Value > 0 ? p.PartId.Value : 0,
                 Qnty = p.Qnty.HasValue ? p.Qnty.Value : 0,
 
             }).ToListAsync();
@@ -63,7 +63,7 @@ namespace MosiacData.Services
         public async Task<decimal> GetStockLevel(int partID)
         {
             
-            return await _db.Inventory.Where(d => d.PartID == partID).SumAsync(r => r.Qnty.Value);
+            return await _db.Inventory.Where(d => d.PartId == partID).SumAsync(r => r.Qnty.Value);
           
            
 
@@ -74,7 +74,7 @@ namespace MosiacData.Services
             Inventory _inventory = new Inventory()
             {
                 DateStamp = DateTime.Today,
-                PartID = partID,
+                PartId = partID,
                 Qnty = Quantity * -1
             };
 
@@ -87,14 +87,14 @@ namespace MosiacData.Services
         {
             Part _part = _db.Part.Find(partID);
             Inventory _inventory = new Inventory();
-            if (_part.PartID == partID)
+            if (_part.PartId == partID)
             {
               
                 _inventory.DateStamp = DateTime.Today;
                 _inventory.TransActionType = 1;
-                _inventory.PartID = _part.PartID;
+                _inventory.PartId = _part.PartId;
                 _inventory.Qnty = Quantity;
-                _inventory.UnitOfMeasure = _part.UID.Value;
+                _inventory.UnitOfMeasure = _part.Uid.Value;
                 _inventory.Description = _part.ItemDescription;
 
                 switch (_inventory.TransActionType)

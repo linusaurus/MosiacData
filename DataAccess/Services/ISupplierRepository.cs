@@ -13,9 +13,10 @@ namespace MosiacData.Services
     public interface ISupplierRepository
     {
         Task<IEnumerable<Supplier>> GetSuppliers();
-        Task<Supplier> GetSupplier(int supplierID);
+        Task<Supplier> GetSupplier(int SupplierId);
         Task<Supplier> AddSupplier(Supplier supplier);
         Task<Supplier> UpdateSupplier(Supplier supplier);
+        Task<IEnumerable<Supplier>> SearchSupplier(string searchTerm);
         Task RemoveSupplier(Supplier supplier);
         //Task<PurchaseOrder> NewSupplierOrder(Supplier supplier);
         Task<IEnumerable<PurchaseOrder>> GetSupplierOrders(Supplier supplier);

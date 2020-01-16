@@ -1,21 +1,18 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
 
 namespace MosiacData.Entities
 {
-    public class NFRC
+    public partial class Nfrc
     {
-        public int CPD_ID { get; set; }
-        public string CPD { get; set; }
-        public double? GroupID { get; set; }
+        public int CpdId { get; set; }
+        public string Cpd { get; set; }
+        public double? GroupId { get; set; }
         public string ManufacturerProductCode { get; set; }
         public string FrameSashType { get; set; }
         public double? Ufactor { get; set; }
-        public double? SHGC { get; set; }
-        public double? VT { get; set; }
+        public double? Shgc { get; set; }
+        public double? Vt { get; set; }
         public double? CondensationResistance { get; set; }
         public double? GlazingLayers { get; set; }
         public string LowE { get; set; }
@@ -25,10 +22,14 @@ namespace MosiacData.Entities
         public string Grid { get; set; }
         public double? Divider { get; set; }
         public string Tint { get; set; }
-        public int? SystemID { get; set; }
+        public int? GlassId { get; set; }
+        public int? SystemId { get; set; }
         public string GlassName { get; set; }
         public string UnitType { get; set; }
         public string SystemName { get; set; }
         public string ProductDescription { get; set; }
+        public string FrameMaterial { get; set; }
+        public bool? Tbreak { get; set; }
+        public string Igu { get; set; }
     }
 }

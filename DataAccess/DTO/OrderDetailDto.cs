@@ -16,7 +16,7 @@ namespace MosiacData.Models
         public int JobID { get; set; }
         public string JobName { get; set; }
         public string JobCostName { get; set; }
-        public int SupplierID { get; set; }
+        public int SupplierId { get; set; }
         public string SupplierName { get; set; }
         [DisplayFormat(ApplyFormatInEditMode =true, DataFormatString ="{###.###.####}")]
         public string SupplierPhone { get; set; }

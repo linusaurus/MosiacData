@@ -1,20 +1,17 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
 
 namespace MosiacData.Entities
 {
-    public class Supplier
+    public partial class Supplier
     {
         public Supplier()
         {
-            this.Parts = new HashSet<Part>();
-            this.PurchaseOrders = new HashSet<PurchaseOrder>();
+            Part = new HashSet<Part>();
+            PurchaseOrder = new HashSet<PurchaseOrder>();
         }
 
-        public int SupplierID { get; set; }
+        public int SupplierId { get; set; }
         public string SupplierName { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
@@ -28,7 +25,7 @@ namespace MosiacData.Entities
         public int? AccountType { get; set; }
         public string AccountNumber { get; set; }
 
-        public ICollection<Part> Parts { get; set; }
-        public ICollection<PurchaseOrder> PurchaseOrders { get; set; }
+        public virtual ICollection<Part> Part { get; set; }
+        public virtual ICollection<PurchaseOrder> PurchaseOrder { get; set; }
     }
 }

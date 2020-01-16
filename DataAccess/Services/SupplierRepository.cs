@@ -11,9 +11,9 @@ namespace MosiacData.Services
 {
     public class SupplierRepository : ISupplierRepository , IDisposable
     {
-        private PurchaseSQLDBContext _context;
+        private readonly BadgerContext _context;
 
-        public SupplierRepository(PurchaseSQLDBContext context)
+        public SupplierRepository(BadgerContext context)
         {
             _context = context;
         }
@@ -24,26 +24,31 @@ namespace MosiacData.Services
             _context.Add(supplier);
             await _context.SaveChangesAsync();
             
-            Supplier result = await _context.Supplier.FindAsync(supplier.SupplierID);
+            Supplier result = await _context.Supplier.FindAsync(supplier.SupplierId);
 
             return result;
         }
 
+        public async Task<IEnumerable<Supplier>> SearchSupplier(string searchTerm)
+        {
+            return await _context.Supplier.Where(c=> c.SupplierName.Contains(searchTerm)).ToListAsync();
+        }
+
         public async Task<IEnumerable<PurchaseOrder>> AddSupplierOrder(Supplier supplier)
         {
-            return await _context.PurchaseOrder.Where(p => p.SupplierID == supplier.SupplierID).ToListAsync();
+            return await _context.PurchaseOrder.Where(p => p.SupplierId == supplier.SupplierId).ToListAsync();
         }
 
        
 
-        public async Task<Supplier> GetSupplier(int supplierID)
+        public async Task<Supplier> GetSupplier(int SupplierId)
         {
-            return await _context.Supplier.FindAsync(supplierID);
+            return await _context.Supplier.FindAsync(SupplierId);
         }
 
         public async Task<IEnumerable<PurchaseOrder>> GetSupplierOrders(Supplier supplier)
         {
-            return await _context.PurchaseOrder.Where(d => d.SupplierID == supplier.SupplierID).ToListAsync();
+            return await _context.PurchaseOrder.Where(d => d.SupplierId == supplier.SupplierId).ToListAsync();
         }
 
         public async Task<IEnumerable<Supplier>> GetSuppliers()
@@ -53,7 +58,7 @@ namespace MosiacData.Services
 
         public async Task RemoveSupplier(Supplier supplier)
         {
-            var supplierToRemover = await _context.Supplier.SingleAsync(s => s.SupplierID == supplier.SupplierID);
+            var supplierToRemover = await _context.Supplier.SingleAsync(s => s.SupplierId == supplier.SupplierId);
             if (supplierToRemover != null)
             {
                 _context.Remove(supplierToRemover);
@@ -68,7 +73,7 @@ namespace MosiacData.Services
 
         public async Task<Supplier> UpdateSupplier(Supplier supplier)
         {
-            Supplier supplierToUpdate = await GetSupplier(supplier.SupplierID);
+            Supplier supplierToUpdate = await GetSupplier(supplier.SupplierId);
             if (supplierToUpdate == null)
             {
                 return null;
@@ -80,17 +85,7 @@ namespace MosiacData.Services
              return supplierToUpdate;
         }
 
-        //public async Task<PurchaseOrder> NewSupplierOrder(Supplier supplier)
-        //{
-        //    PurchaseOrder orderToCreate = new PurchaseOrder();
-        //    orderToCreate.SupplierID = supplier.SupplierID;
-        //    await _context.PurchaseOrder.AddAsync(orderToCreate);
-        //    //orderToCreate.SupplierID = supplier.SupplierID;
-            
      
-           
-        //    return orderToCreate;
-        //}
 
 
         public void Dispose()
@@ -106,5 +101,7 @@ namespace MosiacData.Services
                 // dispose resources when needed
             }
         }
+
+      
     }
 }

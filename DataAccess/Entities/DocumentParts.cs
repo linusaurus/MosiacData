@@ -1,18 +1,14 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
-
 
 namespace MosiacData.Entities
 {
-    public class DocumentParts
+    public partial class DocumentParts
     {
-        public int PartID { get; set; }
-        public int DocID { get; set; }
+        public int PartId { get; set; }
+        public int DocId { get; set; }
 
-        public Part Parts { get; set; }
-        public Document Documents { get; set; }
+        public virtual Document Doc { get; set; }
+        public virtual Part Part { get; set; }
     }
 }

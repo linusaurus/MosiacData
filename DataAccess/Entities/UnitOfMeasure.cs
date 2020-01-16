@@ -1,17 +1,18 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
 
 namespace MosiacData.Entities
 {
-    public class UnitOfMeasure
+    public partial class UnitOfMeasure
     {
-       
-        public int UID { get; set; }
-        public string UOM { get; set; }
+        public UnitOfMeasure()
+        {
+            Part = new HashSet<Part>();
+        }
 
-        
+        public int Uid { get; set; }
+        public string Uom { get; set; }
+
+        public virtual ICollection<Part> Part { get; set; }
     }
 }

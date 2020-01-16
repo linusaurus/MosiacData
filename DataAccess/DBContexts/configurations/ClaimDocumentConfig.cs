@@ -12,7 +12,7 @@ namespace PurchaseSQLDB.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<ClaimDocument> entity)
         {
-            entity.HasKey(p => p.ClaimDocumentID);
+            entity.HasKey(p => p.ClaimDocumentId);
         }
     }
 }

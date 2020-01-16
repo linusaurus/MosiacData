@@ -1,29 +1,27 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
 
 namespace MosiacData.Entities
 {
-    public class Inventory
+    public partial class Inventory
     {
-        public int StockTransactionID { get; set; }
-        public int? OrderReceiptID { get; set; }
-        public int? LineID { get; set; }
-        public int? PartID { get; set; }
-        public int? StockBillID { get; set; }
-        public int? JobID { get; set; }
+        public int StockTransactionId { get; set; }
+        public int? OrderReceiptId { get; set; }
+        public int? LineId { get; set; }
+        public int? PartId { get; set; }
+        public int? StockBillId { get; set; }
+        public int? JobId { get; set; }
         public string Location { get; set; }
-        public int? ArticleID { get; set; }
+        public int? ArticleId { get; set; }
         public DateTime? DateStamp { get; set; }
         public decimal? Qnty { get; set; }
         public string Note { get; set; }
         public string Description { get; set; }
         public int? UnitOfMeasure { get; set; }
         public int? TransActionType { get; set; }
+        public int? EmpId { get; set; }
 
-        public OrderReciept OrderReciept { get; set; }
-        
+        public virtual OrderReciept OrderReceipt { get; set; }
+        public virtual StockBill StockBill { get; set; }
     }
 }

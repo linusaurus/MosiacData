@@ -9,9 +9,9 @@ namespace MosiacData.Services
 {
     public class JobService
     {
-        private readonly PurchaseSQLDBContext _db;
+        private readonly BadgerContext _db;
 
-        public JobService(PurchaseSQLDBContext context)
+        public JobService(BadgerContext context)
         {
             _db = context;
         }
@@ -23,7 +23,7 @@ namespace MosiacData.Services
                          .Where(x => x.SupplierName.Contains(search))
                          .Select(x => new DropDownTuple
                          {
-                             value = x.SupplierID.ToString(),
+                             value = x.SupplierId.ToString(),
                              label = x.SupplierName.ToString()
                          }).ToList();
 

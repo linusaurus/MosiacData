@@ -32,7 +32,7 @@ namespace MosiacData.Models
         [DataType(DataType.Currency)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0.00}")]
         public double JobLaborTotal { get; set; }
-        public ICollection<Product> JobItems { get; set; } = new HashSet<Product>();
+        //public ICollection<Product> JobItems { get; set; } = new HashSet<Product>();
         public ICollection<OrderDto> JobOrders { get; set; }
     }
 }

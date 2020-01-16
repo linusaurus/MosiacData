@@ -1,29 +1,26 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
 
 namespace MosiacData.Entities
 {
-    public class PurchaseOrder
+    public partial class PurchaseOrder
     {
         public PurchaseOrder()
         {
-            this.Attachments = new HashSet<Attachment>();
-            //this.Notifications = new HashSet<Notification>();
-            this.PurchaseLineItems = new HashSet<PurchaseLineItem>();
+            Attachment = new HashSet<Attachment>();
+            Notification = new HashSet<Notification>();
+            PurchaseLineItem = new HashSet<PurchaseLineItem>();
         }
 
         public int OrderNum { get; set; }
-        public DateTime OrderDate { get; set; }
-        public DateTime? Expected_Date { get; set; }
-        public int? SupplierID { get; set; }
-        public int? EmployeeID { get; set; }
+        public DateTime? OrderDate { get; set; }
+        public DateTime? ExpectedDate { get; set; }
+        public int? SupplierId { get; set; }
+        public int? EmployeeId { get; set; }
         public string SalesRep { get; set; }
-        public int? Job_id { get; set; }
+        public int? JobId { get; set; }
         public bool? SuppressTax { get; set; }
-        public int? ShipID { get; set; }
+        public int? ShipId { get; set; }
         public decimal? OrderTotal { get; set; }
         public bool? Recieved { get; set; }
         public decimal? ShippingCost { get; set; }
@@ -39,11 +36,11 @@ namespace MosiacData.Entities
         public string ModifiedBy { get; set; }
         public string OrderFormat { get; set; }
 
-        public Supplier Supplier { get; set; }
-        public Employee Employee { get; set; }
-        public Job Job { get; set; }
-        public ICollection<Attachment> Attachments { get; set; }
-        //public ICollection<Notification> Notifications { get; set; }
-        public ICollection<PurchaseLineItem> PurchaseLineItems { get; set; }
+        public virtual Employee Employee { get; set; }
+        public virtual Job Job { get; set; }
+        public virtual Supplier Supplier { get; set; }
+        public virtual ICollection<Attachment> Attachment { get; set; }
+        public virtual ICollection<Notification> Notification { get; set; }
+        public virtual ICollection<PurchaseLineItem> PurchaseLineItem { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace PurchaseSQLDB.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Attachment> entity)
         {
-            entity.HasKey(p => p.AttachmentID);
+            entity.HasKey(p => p.AttachmentId);
         }
     }
 }

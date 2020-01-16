@@ -12,7 +12,7 @@ namespace PurchaseSQLDB.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<SubAssembly> entity)
         {
-            entity.HasKey(p => p.SubAssemblyID);
+            entity.HasKey(p => p.SubAssemblyId);
 
            
         }

@@ -1,28 +1,20 @@
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.ComponentModel.DataAnnotations;
-
-
-
 
 namespace MosiacData.Entities
 {
-    public class Category
+    public partial class Category
     {
         public Category()
         {
-            this.PartTypes = new HashSet<PartType>();
+            PartType = new HashSet<PartType>();
         }
 
         public int Categoryid { get; set; }
-        //public string Category { get; set; }
-        public int? PartClassID { get; set; }
+        public string Category1 { get; set; }
+        public int? PartClassId { get; set; }
 
-        public PartClass PartClass { get; set; }
-        public ICollection<PartType> PartTypes { get; set; }
+        public virtual PartClass PartClass { get; set; }
+        public virtual ICollection<PartType> PartType { get; set; }
     }
 }

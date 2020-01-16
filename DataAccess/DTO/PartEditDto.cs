@@ -42,7 +42,7 @@ namespace MosiacData.Models
         //public int PartTypeID { get; set; }
         //public string PartTypeName { get; set; }
         [Display(Name ="Supplier#")]
-        public int SupplierID { get; set; }
+        public int SupplierId { get; set; }
         [Display(Name ="Supplier Name")]
         public string SupplierName { get; set; }
         [Display(Name ="Suppliers Part Name")]

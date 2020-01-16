@@ -1,24 +1,23 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
-
 
 namespace MosiacData.Entities
 {
-    public class Document
+    public partial class Document
     {
-       
+        public Document()
+        {
+            DocumentParts = new HashSet<DocumentParts>();
+        }
 
-        public int DocID { get; set; }
+        public int DocId { get; set; }
         public string Description { get; set; }
         public string DocumentPath { get; set; }
         public string DocumentView { get; set; }
-        public int PartID { get; set; }
+        public int? PartId { get; set; }
         public DateTime? DateCreated { get; set; }
         public string Creator { get; set; }
 
-        public ICollection<DocumentParts> DocumentsLink { get; set; } = new HashSet<DocumentParts>();
+        public virtual ICollection<DocumentParts> DocumentParts { get; set; }
     }
 }

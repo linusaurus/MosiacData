@@ -11,33 +11,38 @@ namespace MosiacData.Services
     public class PurchaseOrderRepository : IPurchaseOrderRepository, IDisposable
     {
 
-        private PurchaseSQLDBContext _context;
-
-        public PurchaseOrderRepository(PurchaseSQLDBContext context)
+        private readonly BadgerContext _context;
+        // Inject the COntext
+        public PurchaseOrderRepository(BadgerContext context)
         {
-
-        }
-        
-        public Task<PurchaseOrder> AddPurchaseOrder(PurchaseOrder purchaseOrder)
-        {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-       
 
-        public async Task<PurchaseOrder> GetPurchaseOrder(int orderNum)
-        {
-            return await _context.PurchaseOrder.FindAsync(orderNum);
-        }
 
         public async Task<IEnumerable<PurchaseOrder>> GetPurchaseOrders()
         {
             return await _context.PurchaseOrder.ToListAsync();
         }
 
-        public  void RemovePurchaseOrder(PurchaseOrder purchaseOrder)
+
+        public async Task<PurchaseOrder> GetPurchaseOrder(int orderNum)
         {
-            _context.Remove(purchaseOrder);
+            return await _context.PurchaseOrder.FindAsync(orderNum);
+        }
+
+        public async Task<PurchaseOrder> AddPurchaseOrder(PurchaseOrder purchaseOrder)
+        {
+            _context.Add(purchaseOrder);
+            await _context.SaveChangesAsync();
+            return await _context.PurchaseOrder.FindAsync(purchaseOrder.OrderNum);
+           
+        }
+
+
+        public  void  RemovePurchaseOrder(PurchaseOrder purchaseOrder)
+        {
+            _context.PurchaseOrder.Remove(purchaseOrder);
         }
 
         public async Task SaveAsync()
@@ -63,5 +68,7 @@ namespace MosiacData.Services
                 // dispose resources when needed
             }
         }
+
+       
     }
 }

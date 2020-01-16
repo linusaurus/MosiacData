@@ -1,30 +1,25 @@
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
-
 
 namespace MosiacData.Entities
 {
-    public class ClaimItem
+    public partial class ClaimItem
     {
         public ClaimItem()
         {
-            this.ClaimDocuments = new HashSet<ClaimDocument>();
+            ClaimDocument = new HashSet<ClaimDocument>();
         }
 
-        public int ClaimItemID { get; set; }
-        public int? ClaimID { get; set; }
-        public int? LineID { get; set; }
-        public int? partID { get; set; }
+        public int ClaimItemId { get; set; }
+        public int? ClaimId { get; set; }
+        public int? LineId { get; set; }
+        public int? PartId { get; set; }
         public string Bcode { get; set; }
         public string Description { get; set; }
         public int? TransActionType { get; set; }
-        public int? ProductID { get; set; }
+        public int? ProductId { get; set; }
         public string DefectDescription { get; set; }
 
-        public Claim Claim { get; set; }
-
-        public ICollection<ClaimDocument> ClaimDocuments { get; set; }
+        public virtual ICollection<ClaimDocument> ClaimDocument { get; set; }
     }
 }

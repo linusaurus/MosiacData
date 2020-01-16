@@ -1,23 +1,20 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
 
 namespace MosiacData.Entities
 {
-    public class PartType
+    public partial class PartType
     {
         public PartType()
         {
-            this.Parts = new HashSet<Part>();
+            Part = new HashSet<Part>();
         }
 
-        public int PartTypeID { get; set; }
-        //public string PartType { get; set; }
+        public int PartTypeId { get; set; }
+        public string PartType1 { get; set; }
         public int? Categoryid { get; set; }
 
-        public Category Category { get; set; }
-        public ICollection<Part> Parts { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual ICollection<Part> Part { get; set; }
     }
 }

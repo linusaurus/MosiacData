@@ -13,18 +13,18 @@ namespace PurchaseSQLDB.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<DocumentParts> entity)
         {
-            entity.HasKey(p => new { p.DocID, p.PartID });
+            entity.HasKey(p => new { p.DocId, p.PartId });
 
             //---------------------------------------------
             // Relationships
 
-            entity.HasOne(pt => pt.Parts)
-                .WithMany(p => p.PartsLink)
-                .HasForeignKey(pt => pt.PartID);
+            entity.HasOne(pt => pt.Part)
+                .WithMany(p => p.DocumentParts)
+                .HasForeignKey(pt => pt.PartId);
 
-            entity.HasOne(pt => pt.Documents)
-                .WithMany(t => t.DocumentsLink)
-                .HasForeignKey(pt => pt.DocID);
+            entity.HasOne(pt => pt.Doc)
+                .WithMany(t => t.DocumentParts)
+                .HasForeignKey(pt => pt.DocId);
         }
     }
 }

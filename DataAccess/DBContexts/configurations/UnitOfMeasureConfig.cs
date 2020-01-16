@@ -12,7 +12,7 @@ namespace PurchaseSQLDB.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<UnitOfMeasure> entity)
         {
-            entity.HasKey(p => p.UID);
+            entity.HasKey(p => p.Uid);
         }
     }
 }

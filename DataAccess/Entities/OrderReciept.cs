@@ -1,23 +1,20 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
 
 namespace MosiacData.Entities
 {
-    public class OrderReciept
+    public partial class OrderReciept
     {
         public OrderReciept()
         {
-            this.Inventories = new HashSet<Inventory>();
+            Inventory = new HashSet<Inventory>();
         }
 
-        public int OrderReceiptID { get; set; }
-        public int? EmployeeID { get; set; }
+        public int OrderReceiptId { get; set; }
+        public int? EmployeeId { get; set; }
         public int? OrderNum { get; set; }
         public DateTime? ReceiptDate { get; set; }
 
-        public ICollection<Inventory> Inventories { get; set; }
+        public virtual ICollection<Inventory> Inventory { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace MosiacData.DBContexts
     {
         public void Configure(EntityTypeBuilder<AccountType> entity)
         {
-            entity.HasKey(p => p.AccountTypeID);
+            entity.HasKey(p => p.AccountTypeId);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace MosiacData.Models
     public class SuppliersListDto
     {
         [Key]
-        public int SupplierID { get; set; }
+        public int SupplierId { get; set; }
         public string SupplierName { get; set; }
         [DisplayFormat(DataFormatString = "{0:C0}", ApplyFormatInEditMode = true)]
         public decimal OrderTotals { get; set; }

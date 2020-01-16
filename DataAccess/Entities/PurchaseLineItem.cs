@@ -1,39 +1,36 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
 
 namespace MosiacData.Entities
 {
-    public class PurchaseLineItem
+    public partial class PurchaseLineItem
     {
-        public int LineID { get; set; }
-        public int PurchaseOrderID { get; set; }
-        public int? JobID { get; set; }
-        public int? VendorID { get; set; }
-        public int? PartID { get; set; }
+        public int LineId { get; set; }
+        public int? PurchaseOrderId { get; set; }
+        public int? JobId { get; set; }
+        public int? VendorId { get; set; }
+        public int? PartId { get; set; }
         public decimal? UnitCost { get; set; }
         public string Description { get; set; }
         public decimal? Qnty { get; set; }
         public decimal? Extended { get; set; }
         public bool? Recieved { get; set; }
-        public int? OrderReceiptID { get; set; }
+        public int? OrderReceiptId { get; set; }
         public int? Uom { get; set; }
         public string UoP { get; set; }
-        public int? ArticleID { get; set; }
-        public int? BomID { get; set; }
+        public int? ArticleId { get; set; }
+        public int? BomId { get; set; }
         public decimal? AmountReceived { get; set; }
         public decimal? Width { get; set; }
         public decimal? Length { get; set; }
         public decimal? Thick { get; set; }
         public decimal? Weight { get; set; }
         public string SupplierPartName { get; set; }
-        public decimal? UoPPrice { get; set; }
-        public string BCode { get; set; }
+        public decimal? UoPprice { get; set; }
+        public string Bcode { get; set; }
         public string Note { get; set; }
-        //public bool? Rejected { get; set; }
+        public bool? Rejected { get; set; }
 
-        public PurchaseOrder PurchaseOrder { get; set; }
+        public virtual PurchaseOrder PurchaseOrder { get; set; }
     }
 }

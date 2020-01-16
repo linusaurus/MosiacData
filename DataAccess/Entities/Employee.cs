@@ -1,22 +1,19 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using MosiacData.Entities;
 
 namespace MosiacData.Entities
 {
-    public class Employee
+    public partial class Employee
     {
         public Employee()
         {
-            this.PurchaseOrders = new HashSet<PurchaseOrder>();
+            PurchaseOrder = new HashSet<PurchaseOrder>();
         }
 
-        public int employeeID { get; set; }
-        public string firstname { get; set; }
-        public string lastname { get; set; }
-        public string middlename { get; set; }
+        public int EmployeeId { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public string Middlename { get; set; }
         public bool? IsPurchaser { get; set; }
         public string EmployeeEmail { get; set; }
         public bool? Show { get; set; }
@@ -24,6 +21,6 @@ namespace MosiacData.Entities
         public string Password { get; set; }
         public int? Role { get; set; }
 
-        public ICollection<PurchaseOrder> PurchaseOrders { get; set; }
+        public virtual ICollection<PurchaseOrder> PurchaseOrder { get; set; }
     }
 }

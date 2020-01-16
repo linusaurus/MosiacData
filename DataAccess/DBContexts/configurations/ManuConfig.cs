@@ -12,7 +12,7 @@ namespace PurchaseSQLDB.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Manu> entity)
         {
-            entity.HasKey(p => p.ManuID);
+            entity.HasKey(p => p.ManuId);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace PurchaseSQLDB.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<PurchaseLineItem> entity)
         {
-            entity.HasKey(p => p.LineID);
+            entity.HasKey(p => p.LineId);
 
             //-----------------------------------
             // Relationships
