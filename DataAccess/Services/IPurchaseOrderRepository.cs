@@ -12,7 +12,7 @@ namespace MosiacData.Services
         Task<PurchaseOrder> GetPurchaseOrder(int orderNum);
         Task<PurchaseOrder> AddPurchaseOrder(PurchaseOrder purchaseOrder);
         Task<PurchaseOrder> UpdatePurchaseOrder(PurchaseOrder purchaseOrder);
-        void RemovePurchaseOrder(PurchaseOrder purchaseOrder);
+        Task RemovePurchaseOrder(int purchaseOrderId);
        
         Task SaveAsync();
     }

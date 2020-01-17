@@ -16,6 +16,7 @@ namespace DataAccessRepoTest
 
         ISupplierRepository _supplierRepo;
         IPurchaseOrderRepository _purchaseOrdersRepo;
+        int TestOrderNumber;
 
         [TestInitialize]
         public void TestInitialize()
@@ -114,20 +115,43 @@ namespace DataAccessRepoTest
         {
             PurchaseOrder orderToBeAdded = new PurchaseOrder();
 
-            //orderToBeAdded.SupplierId = 893;
+            orderToBeAdded.SupplierId = 893;
+            orderToBeAdded.JobId = 100;
+            orderToBeAdded.EmployeeId = 8;
+            orderToBeAdded.SalesRep = "Bobby Joe";
+            orderToBeAdded.SuppressTax = true;
 
             var orderReturned = await _purchaseOrdersRepo.AddPurchaseOrder(orderToBeAdded);
+            TestOrderNumber = orderReturned.OrderNum;
 
             Assert.IsTrue(orderReturned.OrderNum > 0);
         }
 
         [TestMethod]
-        public async Task UpdateSupplierAsync()
+        public async Task RemovePurchaseOrderAsync()
         {
+            int orderNumberToBeRemoved = 23772;
+            await _purchaseOrdersRepo.RemovePurchaseOrder(orderNumberToBeRemoved);
+            await _purchaseOrdersRepo.SaveAsync();
 
-            //var orderReturned = await _purchaseOPrdersRepo.GetPurchaseOrder(OrderNumberToTest);
+            var test = await _purchaseOrdersRepo.GetPurchaseOrder(orderNumberToBeRemoved);
+            Assert.IsTrue(test == null);
+        }
 
-            //Assert.IsTrue(orderReturned.OrderNum == OrderNumberToTest);
+        [TestMethod]
+        public async Task UpdatePurchaseOrderAsync()
+        {
+            int orderNumberToBeUpdated = 13400;
+           
+            var orderToTest = await _purchaseOrdersRepo.GetPurchaseOrder(orderNumberToBeUpdated);
+            orderToTest.SalesRep = "Billy Joe Gentry";
+            orderToTest.Memo = "Test DB repo";
+            orderToTest.ModifiedDate = DateTime.Today;
+            await _purchaseOrdersRepo.UpdatePurchaseOrder(orderToTest);
+            
+
+            var test = await _purchaseOrdersRepo.GetPurchaseOrder(orderToTest.OrderNum);
+            Assert.IsTrue(test.SalesRep == "Billy Joe Gentry");
         }
     }
 }

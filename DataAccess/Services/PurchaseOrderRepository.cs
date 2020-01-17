@@ -5,6 +5,7 @@ using System.Text;
 using MosiacData.DBContexts;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace MosiacData.Services
 {
@@ -22,6 +23,8 @@ namespace MosiacData.Services
 
         public async Task<IEnumerable<PurchaseOrder>> GetPurchaseOrders()
         {
+           
+           
             return await _context.PurchaseOrder.ToListAsync();
         }
 
@@ -40,9 +43,14 @@ namespace MosiacData.Services
         }
 
 
-        public  void  RemovePurchaseOrder(PurchaseOrder purchaseOrder)
+        public  async Task  RemovePurchaseOrder(int purchaseOrderId)
         {
-            _context.PurchaseOrder.Remove(purchaseOrder);
+            PurchaseOrder orderToRemove = await _context.PurchaseOrder.FindAsync(purchaseOrderId);
+            if (orderToRemove == null)
+            {
+                return;
+            }
+             _context.PurchaseOrder.Remove(orderToRemove);
         }
 
         public async Task SaveAsync()
@@ -50,9 +58,11 @@ namespace MosiacData.Services
             await _context.SaveChangesAsync();
         }
 
-        public Task<PurchaseOrder> UpdatePurchaseOrder(PurchaseOrder purchaseOrder)
+        public async Task<PurchaseOrder> UpdatePurchaseOrder(PurchaseOrder purchaseOrder)
         {
-            throw new NotImplementedException();
+             _context.PurchaseOrder.Update(purchaseOrder);
+            await _context.SaveChangesAsync();
+            return await _context.PurchaseOrder.FindAsync(purchaseOrder.OrderNum);
         }
 
         public void Dispose()
