@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
+using System.IO;
+using System.Diagnostics;
 
 namespace DataAccessRepoTest
 {
@@ -103,7 +105,7 @@ namespace DataAccessRepoTest
         [TestMethod]
         public async Task GetOrderByIdAsync()
         {
-            int OrderNumberToTest = 23765;
+            int OrderNumberToTest = 13400;
 
             var orderReturned = await _purchaseOrdersRepo.GetPurchaseOrder(OrderNumberToTest);
 
@@ -142,16 +144,71 @@ namespace DataAccessRepoTest
         public async Task UpdatePurchaseOrderAsync()
         {
             int orderNumberToBeUpdated = 13400;
-           
+            string saleRep = "Billy Joe Dickman";
             var orderToTest = await _purchaseOrdersRepo.GetPurchaseOrder(orderNumberToBeUpdated);
-            orderToTest.SalesRep = "Billy Joe Gentry";
+            orderToTest.SalesRep = saleRep;
             orderToTest.Memo = "Test DB repo";
             orderToTest.ModifiedDate = DateTime.Today;
             await _purchaseOrdersRepo.UpdatePurchaseOrder(orderToTest);
             
 
             var test = await _purchaseOrdersRepo.GetPurchaseOrder(orderToTest.OrderNum);
-            Assert.IsTrue(test.SalesRep == "Billy Joe Gentry");
+            Assert.IsTrue(test.SalesRep == saleRep);
+        }
+
+        [TestMethod]
+        public async Task AddPurchaseOrderAttachmentAsync()
+        {
+            int orderNumberToBeUpdated = 13400;
+            string filepath = @"C:\Users\Rich.DESIGNSYNTHESIS\Documents\Auto-Attendant-Menu.png";
+            var orderToTest = await _purchaseOrdersRepo.GetPurchaseOrder(orderNumberToBeUpdated);
+            Attachment att = new Attachment() { AttachmentDescription = "Test Attachement", OrderNum = 13400,Ext="png" };
+            att.filesource = File.ReadAllBytes(filepath);
+            orderToTest.Attachment.Add(att);
+            orderToTest.Memo = "Added Binary File Attachment";
+            orderToTest.ModifiedDate = DateTime.Today;
+            await _purchaseOrdersRepo.UpdatePurchaseOrder(orderToTest);
+
+
+            var test = await _purchaseOrdersRepo.GetPurchaseOrder(orderToTest.OrderNum);
+            Assert.IsTrue(test.Attachment.First().filesource.Length == att.filesource.Length);
+        }
+
+        [TestMethod]
+        public async Task GetAllOrderAttachmentAsync()
+        {
+            int orderNumberToBeUpdated = 13400;
+          
+            var orderToTest = await _purchaseOrdersRepo.GetPurchaseOrder(orderNumberToBeUpdated);
+
+            var attachments = await _purchaseOrdersRepo.GetPurchaseOrderAttachments(orderToTest.OrderNum);
+
+            Assert.IsTrue(attachments.Count() > 0);
+        }
+
+        [TestMethod]
+        public async Task GetAttachment()
+        {
+            int attachmentId = 43;
+
+            var attachmentToTest = await _purchaseOrdersRepo.GetOrderAttachment(attachmentId);
+
+            var tempFolder = System.IO.Path.GetTempPath();
+            string temp = System.IO.Path.Combine(tempFolder, "howdy");
+            temp += ".";
+            temp += attachmentToTest.Ext.ToString();
+            System.IO.File.WriteAllBytes(temp, attachmentToTest.filesource);
+            using (Process myProcess = new Process())
+            {
+                myProcess.StartInfo.UseShellExecute = true;
+                // You can start any process, HelloWorld is a do-nothing example.
+                myProcess.StartInfo.FileName = temp;
+                //myProcess.StartInfo.CreateNoWindow = true;
+                myProcess.Start();
+          
+            }
+           
+            Assert.IsTrue(attachmentToTest != null);
         }
     }
 }

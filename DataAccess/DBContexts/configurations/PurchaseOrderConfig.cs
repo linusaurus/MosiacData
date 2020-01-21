@@ -17,8 +17,8 @@ namespace PurchaseSQLDB.DataAccess.Configurations
             //------------------------------------------------
             // Relationships
 
-            //entity.HasMany(c => c.PurchaseLineItems).WithOne()
-            //    .HasForeignKey(k => k.PurchaseOrderID).IsRequired();
+            entity.HasMany(c => c.Attachment).WithOne()
+               .HasForeignKey(k => k.OrderNum).IsRequired();
                
         }
     }

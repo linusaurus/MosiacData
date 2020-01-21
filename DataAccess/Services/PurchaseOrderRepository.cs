@@ -6,6 +6,7 @@ using MosiacData.DBContexts;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using System.Linq;
 
 namespace MosiacData.Services
 {
@@ -65,6 +66,36 @@ namespace MosiacData.Services
             return await _context.PurchaseOrder.FindAsync(purchaseOrder.OrderNum);
         }
 
+
+        public async Task<IEnumerable<Attachment>> GetPurchaseOrderAttachments(int purchaseOrderId)
+        {
+            PurchaseOrder order = await _context.PurchaseOrder.FindAsync(purchaseOrderId);
+            if (order == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            return  await _context.Attachment.Where( g => g.OrderNum == purchaseOrderId).ToListAsync();
+            
+        }
+
+        public async Task<Attachment> GetOrderAttachment(int attachmentID)
+        {
+            
+            return await _context.Attachment.FindAsync(attachmentID);
+
+        }
+
+        public async Task<byte[]> RetrieveAttachment(int attachmentId)
+        {
+            var attachment =  await _context.Attachment.FindAsync(attachmentId);
+            if (attachment == null)
+            {
+                throw new NullReferenceException();
+            }
+            return attachment.filesource;
+        }
+
         public void Dispose()
         {
             Dispose(true);
@@ -79,6 +110,6 @@ namespace MosiacData.Services
             }
         }
 
-       
+        
     }
 }

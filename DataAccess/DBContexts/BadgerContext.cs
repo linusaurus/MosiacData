@@ -288,7 +288,7 @@ namespace MosiacData.DBContexts
                     .HasMaxLength(140)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.OrderNumNavigation)
+                entity.HasOne(d => d.PurchaseOrder)
                     .WithMany(p => p.Attachment)
                     .HasForeignKey(d => d.OrderNum)
                     .HasConstraintName("FK_Attachment_PurchaseOrder");
@@ -1252,6 +1252,11 @@ namespace MosiacData.DBContexts
                     .WithMany(p => p.PurchaseOrder)
                     .HasForeignKey(d => d.SupplierId)
                     .HasConstraintName("FK_PurchaseOrder_Supplier");
+
+                entity.HasMany(d => d.Attachment)
+                 .WithOne(p => p.PurchaseOrder)
+                 .HasForeignKey(d => d.OrderNum);
+                    
             });
 
             modelBuilder.Entity<Purchasers>(entity =>

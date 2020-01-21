@@ -10,7 +10,7 @@ namespace MosiacData.Entities
         public int? OrderNum { get; set; }
         public string Ext { get; set; }
         public string Src { get; set; }
-
-        public virtual PurchaseOrder OrderNumNavigation { get; set; }
+        public byte[] filesource { get; set; }
+        public virtual PurchaseOrder PurchaseOrder { get; set; }
     }
 }
